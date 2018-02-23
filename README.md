@@ -11,34 +11,25 @@
 
 提示 :)
 
+
+```objective-c
 /*
  根据nib注册Cell
  */
-`
 - (instancetype)initBinder:(UITableView *)tableView
+               dataCommand:(RACCommand *)dataCommand
+                hasSection:(BOOL)hasSection
+                  nibsCell:(NSArray *)nibs
+               identifiers:(NSArray *)identifiers;
+```
 
-​               dataCommand:(RACCommand *)dataCommand
-
-​                     hasSection:(BOOL)hasSection
-
-​                          nibsCell:(NSArray *)nibs
-
-​                       identifiers:(NSArray *)identifiers;
-
-`
-
+```objective-c
 /*
  根据name注册Cell
  */
-`
 - (instancetype)initBinder:(UITableView *)tableView
-
-​               dataCommand:(RACCommand *)dataCommand
-
-​                    hasSection:(BOOL)hasSection
-
-​            cellClassNames:(NSArray *)names
-
-​                      identifiers:(NSArray *)identifiers;
-
-`
+               dataCommand:(RACCommand *)dataCommand
+                hasSection:(BOOL)hasSection
+            cellClassNames:(NSArray *)names
+               identifiers:(NSArray *)identifiers;
+```
