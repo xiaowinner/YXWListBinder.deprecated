@@ -7,15 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D9DBB273A86C24A1BF9F67C /* libPods-YXWListBinder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B3D6AEB8171D97ED9102297A /* libPods-YXWListBinder.a */; };
 		AF3994BD203EB66800C714AE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3994BC203EB66800C714AE /* AppDelegate.m */; };
 		AF3994C0203EB66800C714AE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3994BF203EB66800C714AE /* ViewController.m */; };
 		AF3994C3203EB66800C714AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF3994C1203EB66800C714AE /* Main.storyboard */; };
 		AF3994C5203EB66800C714AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF3994C4203EB66800C714AE /* Assets.xcassets */; };
 		AF3994C8203EB66800C714AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF3994C6203EB66800C714AE /* LaunchScreen.storyboard */; };
 		AF3994CB203EB66800C714AE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3994CA203EB66800C714AE /* main.m */; };
+		AF3994D3203EB83A00C714AE /* YXWListBinder.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3994D2203EB83A00C714AE /* YXWListBinder.m */; };
+		AFFC8BF1203FBD3E009A9500 /* BinderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AFFC8BEF203FBD3E009A9500 /* BinderTableViewCell.m */; };
+		AFFC8BF2203FBD3E009A9500 /* BinderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFFC8BF0203FBD3E009A9500 /* BinderTableViewCell.xib */; };
+		AFFC8BF7203FC04B009A9500 /* BinderCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AFFC8BF6203FC04B009A9500 /* BinderCellViewModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2294232DBE0C94F2161E9405 /* Pods-YXWListBinder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YXWListBinder.release.xcconfig"; path = "Pods/Target Support Files/Pods-YXWListBinder/Pods-YXWListBinder.release.xcconfig"; sourceTree = "<group>"; };
 		AF3994B8203EB66800C714AE /* YXWListBinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YXWListBinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF3994BB203EB66800C714AE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		AF3994BC203EB66800C714AE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -26,6 +32,17 @@
 		AF3994C7203EB66800C714AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AF3994C9203EB66800C714AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AF3994CA203EB66800C714AE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		AF3994D1203EB83A00C714AE /* YXWListBinder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXWListBinder.h; sourceTree = "<group>"; };
+		AF3994D2203EB83A00C714AE /* YXWListBinder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXWListBinder.m; sourceTree = "<group>"; };
+		AF3994D4203EBD8500C714AE /* YXWCellBinderProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXWCellBinderProtocol.h; sourceTree = "<group>"; };
+		AF3994D7203EBF3500C714AE /* YXWListBinderViewModelProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXWListBinderViewModelProtocol.h; sourceTree = "<group>"; };
+		AFFC8BEE203FBD3E009A9500 /* BinderTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BinderTableViewCell.h; sourceTree = "<group>"; };
+		AFFC8BEF203FBD3E009A9500 /* BinderTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BinderTableViewCell.m; sourceTree = "<group>"; };
+		AFFC8BF0203FBD3E009A9500 /* BinderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BinderTableViewCell.xib; sourceTree = "<group>"; };
+		AFFC8BF5203FC04B009A9500 /* BinderCellViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BinderCellViewModel.h; sourceTree = "<group>"; };
+		AFFC8BF6203FC04B009A9500 /* BinderCellViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BinderCellViewModel.m; sourceTree = "<group>"; };
+		B3D6AEB8171D97ED9102297A /* libPods-YXWListBinder.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YXWListBinder.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3AF4E64AC3DE44627362D55 /* Pods-YXWListBinder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YXWListBinder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YXWListBinder/Pods-YXWListBinder.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +50,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D9DBB273A86C24A1BF9F67C /* libPods-YXWListBinder.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		36B852C0F22739C09D848CDB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C3AF4E64AC3DE44627362D55 /* Pods-YXWListBinder.debug.xcconfig */,
+				2294232DBE0C94F2161E9405 /* Pods-YXWListBinder.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		AF3994AF203EB66800C714AE = {
 			isa = PBXGroup;
 			children = (
 				AF3994BA203EB66800C714AE /* YXWListBinder */,
 				AF3994B9203EB66800C714AE /* Products */,
+				36B852C0F22739C09D848CDB /* Pods */,
+				F6A70A9770AE346BE922ED81 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,10 +87,17 @@
 		AF3994BA203EB66800C714AE /* YXWListBinder */ = {
 			isa = PBXGroup;
 			children = (
+				AFFC8BF4203FC032009A9500 /* ViewModel */,
+				AFFC8BF3203FC028009A9500 /* Model */,
+				AFFC8BED203FBC71009A9500 /* View */,
 				AF3994BB203EB66800C714AE /* AppDelegate.h */,
 				AF3994BC203EB66800C714AE /* AppDelegate.m */,
 				AF3994BE203EB66800C714AE /* ViewController.h */,
 				AF3994BF203EB66800C714AE /* ViewController.m */,
+				AF3994D1203EB83A00C714AE /* YXWListBinder.h */,
+				AF3994D2203EB83A00C714AE /* YXWListBinder.m */,
+				AF3994D4203EBD8500C714AE /* YXWCellBinderProtocol.h */,
+				AF3994D7203EBF3500C714AE /* YXWListBinderViewModelProtocol.h */,
 				AF3994C1203EB66800C714AE /* Main.storyboard */,
 				AF3994C4203EB66800C714AE /* Assets.xcassets */,
 				AF3994C6203EB66800C714AE /* LaunchScreen.storyboard */,
@@ -71,6 +107,40 @@
 			path = YXWListBinder;
 			sourceTree = "<group>";
 		};
+		AFFC8BED203FBC71009A9500 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AFFC8BEE203FBD3E009A9500 /* BinderTableViewCell.h */,
+				AFFC8BEF203FBD3E009A9500 /* BinderTableViewCell.m */,
+				AFFC8BF0203FBD3E009A9500 /* BinderTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AFFC8BF3203FC028009A9500 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AFFC8BF4203FC032009A9500 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				AFFC8BF5203FC04B009A9500 /* BinderCellViewModel.h */,
+				AFFC8BF6203FC04B009A9500 /* BinderCellViewModel.m */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		F6A70A9770AE346BE922ED81 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B3D6AEB8171D97ED9102297A /* libPods-YXWListBinder.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -78,9 +148,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AF3994CE203EB66800C714AE /* Build configuration list for PBXNativeTarget "YXWListBinder" */;
 			buildPhases = (
+				8557A03F129313DD43FB7DD3 /* [CP] Check Pods Manifest.lock */,
 				AF3994B4203EB66800C714AE /* Sources */,
 				AF3994B5203EB66800C714AE /* Frameworks */,
 				AF3994B6203EB66800C714AE /* Resources */,
+				B51A62E6685B3D17C73F4BB8 /* [CP] Embed Pods Frameworks */,
+				DFBDC9C3C7C976A614B8AAA2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -132,10 +205,62 @@
 				AF3994C8203EB66800C714AE /* LaunchScreen.storyboard in Resources */,
 				AF3994C5203EB66800C714AE /* Assets.xcassets in Resources */,
 				AF3994C3203EB66800C714AE /* Main.storyboard in Resources */,
+				AFFC8BF2203FBD3E009A9500 /* BinderTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8557A03F129313DD43FB7DD3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-YXWListBinder-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B51A62E6685B3D17C73F4BB8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YXWListBinder/Pods-YXWListBinder-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DFBDC9C3C7C976A614B8AAA2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YXWListBinder/Pods-YXWListBinder-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AF3994B4203EB66800C714AE /* Sources */ = {
@@ -144,7 +269,10 @@
 			files = (
 				AF3994C0203EB66800C714AE /* ViewController.m in Sources */,
 				AF3994CB203EB66800C714AE /* main.m in Sources */,
+				AF3994D3203EB83A00C714AE /* YXWListBinder.m in Sources */,
+				AFFC8BF7203FC04B009A9500 /* BinderCellViewModel.m in Sources */,
 				AF3994BD203EB66800C714AE /* AppDelegate.m in Sources */,
+				AFFC8BF1203FBD3E009A9500 /* BinderTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,7 +346,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -267,7 +395,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -276,6 +404,7 @@
 		};
 		AF3994CF203EB66800C714AE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C3AF4E64AC3DE44627362D55 /* Pods-YXWListBinder.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -290,6 +419,7 @@
 		};
 		AF3994D0203EB66800C714AE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2294232DBE0C94F2161E9405 /* Pods-YXWListBinder.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
