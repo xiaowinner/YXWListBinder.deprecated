@@ -7,6 +7,7 @@
 //
 
 #import "BinderTableViewCell.h"
+#import "BinderCellViewModel.h"
 
 @implementation BinderTableViewCell
 
@@ -14,7 +15,12 @@
     [super awakeFromNib];
 }
 
-- (void)bindViewModel:(id)viewModel withParams:(NSDictionary *)params {
+- (void)bindViewModel:(id)viewModel {
+    
+    if ([viewModel isKindOfClass:[BinderCellViewModel class]]) {
+        BinderCellViewModel *model = viewModel;
+        self.titleLabel.text = model.title;
+    }
     
 }
 

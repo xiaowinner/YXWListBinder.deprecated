@@ -8,11 +8,13 @@
 
 #import "ViewController.h"
 #import "YXWListBinder.h"
+#import "MainViewModel.h"
 
 @interface ViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) YXWListBinder *tableViewBinder;
+@property (strong, nonatomic) MainViewModel *viewModel;
 @property (copy, nonatomic) NSArray *data;
 
 @end
@@ -21,10 +23,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tableViewBinder = [[YXWListBinder alloc]
-                            initBinder:self.tableView
-                            dataSource:self.data
-                            hasSection:YES];
+    UINib *cell= [UINib nibWithNibName:@"BinderTableViewCell" bundle:[NSBundle mainBundle]];
+    NSArray *nibs = @[cell];
+    self.viewModel = [[MainViewModel alloc] initViewModel];
+    self.tableViewBinder = [[YXWListBinder alloc] initBinder:self.tableView dataCommand:self.viewModel.dataCommand hasSection:NO nibsCell:nibs identifiers:@[@"BinderTableViewCell"]];
+    [self.viewModel.dataCommand execute:@1];
+
 }
 
 @end

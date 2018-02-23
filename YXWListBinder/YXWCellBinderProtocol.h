@@ -10,6 +10,6 @@
 
 @protocol YXWCellBinderProtocol <NSObject>
 
-- (void)bindViewModel:(id)viewModel withParams:(NSDictionary *)params;
+- (void)bindViewModel:(id)viewModel;
 
 @end
