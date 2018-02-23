@@ -6,11 +6,12 @@
 
 - 克隆这个项目到本地.
 - 移动YXWListBinder.h 和 YXWListBinder.m 文件到你的项目.
-- 该项目依赖于ReactCocoa，请在Podfile中添加 pod 'ReactiveObjC'.
-- 项目中包含Demo.
+- 执行pod install.
 
 提示 :)
 
+- 该项目依赖于ReactCocoa，请在Podfile中添加 pod 'ReactiveObjC'.
+- 项目中包含Demo.
 
 ```objective-c
 /*
