@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "YXWCellBinderProtocol.h"
+#import "YXWListBinderProtocol.h"
 
-@interface BinderTableViewCell : UITableViewCell<YXWCellBinderProtocol>
+@interface BinderTableViewCell : UITableViewCell<YXWListBinderProtocol>
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 

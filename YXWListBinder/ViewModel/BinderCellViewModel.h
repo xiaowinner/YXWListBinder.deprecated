@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "YXWListBinderViewModelProtocol.h"
 
+
 @interface BinderCellViewModel : NSObject<YXWListBinderViewModelProtocol>
 
 @property (nonatomic, copy) NSString *title;

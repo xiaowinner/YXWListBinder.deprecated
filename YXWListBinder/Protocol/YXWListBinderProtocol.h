@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol YXWCellBinderProtocol <NSObject>
+@protocol YXWListBinderProtocol <NSObject>
 
 @required
 - (void)bindViewModel:(id)viewModel;

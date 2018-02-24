@@ -9,6 +9,7 @@
 #import "MainViewModel.h"
 #import "BinderCellViewModel.h"
 #import "BinderCellClassViewModel.h"
+#import "BinderHeaderFooterViewModel.h"
 
 @implementation MainViewModel
 
@@ -40,7 +41,9 @@
                 [dataArray addObject:viewModel];
             }
         }
-        [subscriber sendNext:dataArray];
+        BinderHeaderFooterViewModel *headerViewModel = [[BinderHeaderFooterViewModel alloc] init];
+        headerViewModel.subData = dataArray;
+        [subscriber sendNext:@[headerViewModel]];
         [subscriber sendCompleted];
         return nil;
     }];

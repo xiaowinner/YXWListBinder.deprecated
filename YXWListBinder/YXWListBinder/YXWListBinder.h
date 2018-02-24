@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <ReactiveObjC/ReactiveObjC.h>
-#import "YXWCellBinderProtocol.h"
+#import "YXWListBinderProtocol.h"
 #import "YXWListBinderViewModelProtocol.h"
 
 @interface YXWListBinder : NSObject
@@ -26,19 +26,21 @@ typedef NS_ENUM(NSInteger,YXWLineType) {
  根据nib注册Cell
  */
 - (instancetype)initBinder:(UITableView *)tableView
-               dataCommand:(RACCommand *)dataCommand
-                hasSection:(BOOL)hasSection
-                  nibsCell:(NSArray *)nibs
-               identifiers:(NSArray *)identifiers;
+                  nibsCell:(NSArray *)nibsCell
+          nibHeaderFooters:(NSArray *)nibHeaderFooters
+           cellIdentifiers:(NSArray *)cellIdentifiers
+   headerFooterIdentifiers:(NSArray *)headerFooterIdentifiers
+               dataCommand:(RACCommand *)dataCommand;
 
 /*
  根据name注册Cell
  */
 - (instancetype)initBinder:(UITableView *)tableView
-               dataCommand:(RACCommand *)dataCommand
-                hasSection:(BOOL)hasSection
-            cellClassNames:(NSArray *)names
-               identifiers:(NSArray *)identifiers;
+            cellClassNames:(NSArray *)cellClassNames
+    headerFooterClassNames:(NSArray *)headerFooterClassNames
+           cellIdentifiers:(NSArray *)cellIdentifiers
+   headerFooterIdentifiers:(NSArray *)headerFooterIdentifiers
+               dataCommand:(RACCommand *)dataCommand;
 
 
 @end

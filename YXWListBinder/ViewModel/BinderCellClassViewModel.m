@@ -18,7 +18,7 @@
     return self;
 }
 
-- (NSString *)cellIdentifier {
+- (NSString *)identifier {
     return @"BinderClassTableViewCell";
 }
 

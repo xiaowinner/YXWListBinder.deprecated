@@ -22,35 +22,48 @@
 #pragma mark Init
 
 - (instancetype)initBinder:(UITableView *)tableView
-               dataCommand:(RACCommand *)dataCommand
-                hasSection:(BOOL)hasSection
-                  nibsCell:(NSArray *)nibs
-               identifiers:(NSArray *)identifiers {
+                  nibsCell:(NSArray *)nibsCell
+          nibHeaderFooters:(NSArray *)nibHeaderFooters
+           cellIdentifiers:(NSArray *)cellIdentifiers
+   headerFooterIdentifiers:(NSArray *)headerFooterIdentifiers
+               dataCommand:(RACCommand *)dataCommand {
     
     self = [super init];
     if (self) {
+        
+        if (nibHeaderFooters) {
+            _hasSection = YES;
+        }else {
+            _hasSection = NO;
+        }
+        
         _tableView = tableView;
         _commend = dataCommand;
-        _hasSection = hasSection;
         _tableView.delegate = self;
         _tableView.dataSource = self;
         
         @weakify(self);
-        [nibs enumerateObjectsUsingBlock:^(UINib *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [nibHeaderFooters enumerateObjectsUsingBlock:^(UINib *obj, NSUInteger idx, BOOL * _Nonnull stop) {
             @strongify(self);
-            if (idx < identifiers.count) {
+            if (idx < headerFooterIdentifiers.count) {
+                [self.tableView registerNib:obj forHeaderFooterViewReuseIdentifier:headerFooterIdentifiers[idx]];
+            }
+        }];
+        
+        [nibsCell enumerateObjectsUsingBlock:^(UINib *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            @strongify(self);
+            if (idx < cellIdentifiers.count) {
                 [self.tableView registerNib:obj
-                     forCellReuseIdentifier:identifiers[idx]];
+                     forCellReuseIdentifier:cellIdentifiers[idx]];
             }
         }];
         
         [_commend.executionSignals subscribeNext:^(RACSignal *execution) {
-            [[[[execution dematerialize] distinctUntilChanged]
-                deliverOn:[RACScheduler mainThreadScheduler]]
-                subscribeNext:^(NSArray *x) {
-                    @strongify(self);
-                    self.data = x;
-                    [self.tableView reloadData];
+             [[[[execution dematerialize] distinctUntilChanged] deliverOn:[RACScheduler mainThreadScheduler]]
+                                                            subscribeNext:^(NSArray *x) {
+                                                                @strongify(self);
+                                                                self.data = x;
+                                                                [self.tableView reloadData];
              } error:^(NSError *error) {
                  NSLog(@"error");
              }];
@@ -60,35 +73,50 @@
 }
 
 - (instancetype)initBinder:(UITableView *)tableView
-               dataCommand:(RACCommand *)dataCommand
-                hasSection:(BOOL)hasSection
-            cellClassNames:(NSArray *)names
-               identifiers:(NSArray *)identifiers {
-    
+            cellClassNames:(NSArray *)cellClassNames
+    headerFooterClassNames:(NSArray *)headerFooterClassNames
+           cellIdentifiers:(NSArray *)cellIdentifiers
+   headerFooterIdentifiers:(NSArray *)headerFooterIdentifiers
+               dataCommand:(RACCommand *)dataCommand {
+
     self = [super init];
     if (self) {
+        
+        if (headerFooterClassNames) {
+            _hasSection = YES;
+        }else {
+            _hasSection = NO;
+        }
+        
         _tableView = tableView;
         _commend = dataCommand;
-        _hasSection = hasSection;
         _tableView.delegate = self;
         _tableView.dataSource = self;
         
         @weakify(self);
-        [names enumerateObjectsUsingBlock:^(NSString *name, NSUInteger idx, BOOL * _Nonnull stop) {
+        [headerFooterClassNames enumerateObjectsUsingBlock:^(NSString *name, NSUInteger idx, BOOL * _Nonnull stop) {
             @strongify(self);
-            if (idx < identifiers.count) {
+            if (idx < headerFooterIdentifiers.count) {
+                [self.tableView registerClass:NSClassFromString(name)
+           forHeaderFooterViewReuseIdentifier:headerFooterIdentifiers[idx]];
+            }
+        }];
+        
+        
+        [cellClassNames enumerateObjectsUsingBlock:^(NSString *name, NSUInteger idx, BOOL * _Nonnull stop) {
+            @strongify(self);
+            if (idx < cellIdentifiers.count) {
                 [self.tableView registerClass:NSClassFromString(name) 
-                       forCellReuseIdentifier:identifiers[idx]];
+                       forCellReuseIdentifier:cellIdentifiers[idx]];
             }
         }];
         
         [_commend.executionSignals subscribeNext:^(RACSignal *execution) {
-            [[[[execution dematerialize] distinctUntilChanged]
-                deliverOn:[RACScheduler mainThreadScheduler]]
-                subscribeNext:^(NSArray *x) {
-                    @strongify(self);
-                    self.data = x;
-                    [self.tableView reloadData];
+             [[[[execution dematerialize] distinctUntilChanged] deliverOn:[RACScheduler mainThreadScheduler]]
+                                                            subscribeNext:^(NSArray *x) {
+                                                                @strongify(self);
+                                                                self.data = x;
+                                                                [self.tableView reloadData];
              } error:^(NSError *error) {
                  NSLog(@"error");
              }];
@@ -99,12 +127,20 @@
 
 #pragma mark About TableView Method
 
-- (id<YXWListBinderViewModelProtocol>)gainCurrentViewModel:(NSIndexPath *)indexPath {
-    if (self.hasSection) {
-        return self.data[indexPath.section][indexPath.row];
-    }
-    else {
-        return self.data[indexPath.row];
+- (id<YXWListBinderViewModelProtocol>)gainCurrentViewModel:(NSIndexPath *)indexPath
+                                                      type:(YXWLineType)type {
+    switch (type) {
+        case IsSection:
+        {
+            return self.data[indexPath.section];
+            break;
+        }
+        case IsRow:
+        {
+            id <YXWListBinderViewModelProtocol> sectionViewModel = self.data[indexPath.section];
+            return [sectionViewModel gainSubData:indexPath.row];
+            break;
+        }
     }
 }
 
@@ -123,7 +159,8 @@
             break;
         case IsRow:
             if (self.hasSection) {
-                return [self.data[section] count];
+                id <YXWListBinderViewModelProtocol> sectionViewModel = self.data[section];
+                return [sectionViewModel gainSubDataCount:section];
             }
             else {
                 return [self.data count];
@@ -135,11 +172,27 @@
 #pragma mark UITableViewDelegate & DataSource
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    id <YXWListBinderViewModelProtocol> cellViewModel = [self gainCurrentViewModel:indexPath];
-    id <YXWCellBinderProtocol> cell = [tableView dequeueReusableCellWithIdentifier:[cellViewModel cellIdentifier]
-                                                                      forIndexPath:indexPath];
+    id <YXWListBinderViewModelProtocol> cellViewModel = [self gainCurrentViewModel:indexPath
+                                                                              type:IsRow];
+    id <YXWListBinderProtocol> cell =
+    [tableView dequeueReusableCellWithIdentifier:[cellViewModel identifier]
+                                    forIndexPath:indexPath];
+    
     [cell bindViewModel:cellViewModel];
     return (UITableViewCell *)cell;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    if (self.hasSection) {
+        id <YXWListBinderViewModelProtocol> headerViewModel = [self gainCurrentViewModel:[NSIndexPath indexPathForRow:0 inSection:section] type:IsSection];
+        
+        id <YXWListBinderProtocol> header =
+        [tableView dequeueReusableHeaderFooterViewWithIdentifier:[headerViewModel identifier]];
+        
+        return (UITableViewHeaderFooterView *)header;
+    }else {
+        return nil;
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -150,6 +203,15 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self gainCurrentCount:IsRow
                           section:section];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (self.hasSection) {
+        id <YXWListBinderViewModelProtocol> headerViewModel = [self gainCurrentViewModel:[NSIndexPath indexPathForRow:0 inSection:section] type:IsSection];
+        return headerViewModel.widgetHeight;
+    }else {
+        return 0.1;
+    }
 }
 
 @end

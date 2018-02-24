@@ -1,5 +1,5 @@
 //
-//  BinderClassTableViewCell.h
+//  BinderTableViewHeader.h
 //  YXWListBinder
 //
 //  Created by 原晓文 on 2018/2/24.
@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "YXWListBinderProtocol.h"
 
-@interface BinderClassTableViewCell : UITableViewCell<YXWListBinderProtocol>
+@interface BinderTableViewHeader : UITableViewHeaderFooterView<YXWListBinderProtocol>
 
 @end

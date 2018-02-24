@@ -19,6 +19,9 @@
 		AF3994D3203EB83A00C714AE /* YXWListBinder.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3994D2203EB83A00C714AE /* YXWListBinder.m */; };
 		AFB336462041099700D6C730 /* BinderClassTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AFB336452041099700D6C730 /* BinderClassTableViewCell.m */; };
 		AFB336492041102C00D6C730 /* BinderCellClassViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AFB336482041102C00D6C730 /* BinderCellClassViewModel.m */; };
+		AFB3364F2041516F00D6C730 /* BinderHeaderFooterViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AFB3364E2041516F00D6C730 /* BinderHeaderFooterViewModel.m */; };
+		AFB33652204152A000D6C730 /* BinderTableViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = AFB33651204152A000D6C730 /* BinderTableViewHeader.m */; };
+		AFB33654204152B900D6C730 /* BinderTableViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFB33653204152B900D6C730 /* BinderTableViewHeader.xib */; };
 		AFFC8BF1203FBD3E009A9500 /* BinderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AFFC8BEF203FBD3E009A9500 /* BinderTableViewCell.m */; };
 		AFFC8BF7203FC04B009A9500 /* BinderCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AFFC8BF6203FC04B009A9500 /* BinderCellViewModel.m */; };
 /* End PBXBuildFile section */
@@ -40,12 +43,17 @@
 		AF3994CA203EB66800C714AE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AF3994D1203EB83A00C714AE /* YXWListBinder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXWListBinder.h; sourceTree = "<group>"; };
 		AF3994D2203EB83A00C714AE /* YXWListBinder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXWListBinder.m; sourceTree = "<group>"; };
-		AF3994D4203EBD8500C714AE /* YXWCellBinderProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXWCellBinderProtocol.h; sourceTree = "<group>"; };
+		AF3994D4203EBD8500C714AE /* YXWListBinderProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXWListBinderProtocol.h; sourceTree = "<group>"; };
 		AF3994D7203EBF3500C714AE /* YXWListBinderViewModelProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXWListBinderViewModelProtocol.h; sourceTree = "<group>"; };
 		AFB336442041099700D6C730 /* BinderClassTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BinderClassTableViewCell.h; sourceTree = "<group>"; };
 		AFB336452041099700D6C730 /* BinderClassTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BinderClassTableViewCell.m; sourceTree = "<group>"; };
 		AFB336472041102C00D6C730 /* BinderCellClassViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BinderCellClassViewModel.h; sourceTree = "<group>"; };
 		AFB336482041102C00D6C730 /* BinderCellClassViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BinderCellClassViewModel.m; sourceTree = "<group>"; };
+		AFB3364D2041516F00D6C730 /* BinderHeaderFooterViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BinderHeaderFooterViewModel.h; sourceTree = "<group>"; };
+		AFB3364E2041516F00D6C730 /* BinderHeaderFooterViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BinderHeaderFooterViewModel.m; sourceTree = "<group>"; };
+		AFB33650204152A000D6C730 /* BinderTableViewHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BinderTableViewHeader.h; sourceTree = "<group>"; };
+		AFB33651204152A000D6C730 /* BinderTableViewHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BinderTableViewHeader.m; sourceTree = "<group>"; };
+		AFB33653204152B900D6C730 /* BinderTableViewHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BinderTableViewHeader.xib; sourceTree = "<group>"; };
 		AFFC8BEE203FBD3E009A9500 /* BinderTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BinderTableViewCell.h; sourceTree = "<group>"; };
 		AFFC8BEF203FBD3E009A9500 /* BinderTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BinderTableViewCell.m; sourceTree = "<group>"; };
 		AFFC8BF5203FC04B009A9500 /* BinderCellViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BinderCellViewModel.h; sourceTree = "<group>"; };
@@ -125,7 +133,7 @@
 		AFB336432040FA5900D6C730 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
-				AF3994D4203EBD8500C714AE /* YXWCellBinderProtocol.h */,
+				AF3994D4203EBD8500C714AE /* YXWListBinderProtocol.h */,
 				AF3994D7203EBF3500C714AE /* YXWListBinderViewModelProtocol.h */,
 			);
 			path = Protocol;
@@ -139,6 +147,9 @@
 				AF2202B4204015FB00DAAC1F /* BinderTableViewCell.xib */,
 				AFB336442041099700D6C730 /* BinderClassTableViewCell.h */,
 				AFB336452041099700D6C730 /* BinderClassTableViewCell.m */,
+				AFB33650204152A000D6C730 /* BinderTableViewHeader.h */,
+				AFB33651204152A000D6C730 /* BinderTableViewHeader.m */,
+				AFB33653204152B900D6C730 /* BinderTableViewHeader.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -146,6 +157,8 @@
 		AFFC8BF4203FC032009A9500 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				AFB3364D2041516F00D6C730 /* BinderHeaderFooterViewModel.h */,
+				AFB3364E2041516F00D6C730 /* BinderHeaderFooterViewModel.m */,
 				AFB336472041102C00D6C730 /* BinderCellClassViewModel.h */,
 				AFB336482041102C00D6C730 /* BinderCellClassViewModel.m */,
 				AFFC8BF5203FC04B009A9500 /* BinderCellViewModel.h */,
@@ -225,6 +238,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFB33654204152B900D6C730 /* BinderTableViewHeader.xib in Resources */,
 				AF3994C8203EB66800C714AE /* LaunchScreen.storyboard in Resources */,
 				AF2202B6204015FB00DAAC1F /* BinderTableViewCell.xib in Resources */,
 				AF3994C5203EB66800C714AE /* Assets.xcassets in Resources */,
@@ -298,6 +312,8 @@
 				AFFC8BF7203FC04B009A9500 /* BinderCellViewModel.m in Sources */,
 				AFB336492041102C00D6C730 /* BinderCellClassViewModel.m in Sources */,
 				AF3994BD203EB66800C714AE /* AppDelegate.m in Sources */,
+				AFB33652204152A000D6C730 /* BinderTableViewHeader.m in Sources */,
+				AFB3364F2041516F00D6C730 /* BinderHeaderFooterViewModel.m in Sources */,
 				AFFC8BF1203FBD3E009A9500 /* BinderTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

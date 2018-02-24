@@ -10,6 +10,7 @@
 #import "YXWListBinder.h"
 #import "MainViewModel.h"
 #import "BinderClassTableViewCell.h"
+#import "BinderTableViewHeader.h"
 
 @interface ViewController ()
 
@@ -33,21 +34,23 @@
 
 - (void)initClassBinder {
     NSString *cellName = NSStringFromClass([BinderClassTableViewCell class]);
+    NSString *headerName = NSStringFromClass([BinderTableViewHeader class]);
     self.tableViewBinder = [[YXWListBinder alloc] initBinder:self.tableView
-                                                 dataCommand:self.viewModel.dataCommand
-                                                  hasSection:NO
                                               cellClassNames:@[cellName]
-                                                 identifiers:@[cellName]];
-    
+                                      headerFooterClassNames:@[headerName]
+                                             cellIdentifiers:@[cellName]
+                                     headerFooterIdentifiers:@[headerName]
+                                                 dataCommand:self.viewModel.dataCommand];
 }
 
 - (void)initNibBinder {
     UINib *cell= [UINib nibWithNibName:@"BinderTableViewCell" bundle:[NSBundle mainBundle]];
     self.tableViewBinder = [[YXWListBinder alloc] initBinder:self.tableView
-                                                 dataCommand:self.viewModel.dataCommand
-                                                  hasSection:NO
                                                     nibsCell:@[cell]
-                                                 identifiers:@[@"BinderTableViewCell"]];
+                                            nibHeaderFooters:nil
+                                             cellIdentifiers:@[@"BinderTableViewCell"]
+                                     headerFooterIdentifiers:nil
+                                                 dataCommand:self.viewModel.dataCommand];
 }
 
 
