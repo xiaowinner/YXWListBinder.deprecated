@@ -10,6 +10,7 @@
 
 @protocol YXWCellBinderProtocol <NSObject>
 
+@required
 - (void)bindViewModel:(id)viewModel;
 
 @end

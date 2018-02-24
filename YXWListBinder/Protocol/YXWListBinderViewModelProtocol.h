@@ -10,6 +10,7 @@
 
 @protocol YXWListBinderViewModelProtocol <NSObject>
 
+@required
 - (NSString *)cellIdentifier;
 
 @end

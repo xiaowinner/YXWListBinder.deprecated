@@ -8,27 +8,37 @@
 
 #import "MainViewModel.h"
 #import "BinderCellViewModel.h"
+#import "BinderCellClassViewModel.h"
 
 @implementation MainViewModel
 
 - (instancetype)initViewModel {
     self = [super init];
     if (self) {
-        _dataCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
-            return [[self simulateRequestData] materialize];
+        _dataCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(NSNumber *input) {
+            if (input.integerValue == 1) {
+                return [[self simulateRequestData:NO] materialize];
+            }else {
+                return [[self simulateRequestData:YES] materialize];
+            }
         }];
     }
     return self;
 }
 
 
-- (RACSignal *)simulateRequestData {
+- (RACSignal *)simulateRequestData:(BOOL)transform {
     return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
         NSMutableArray *dataArray = [NSMutableArray array];
         for (int i = 0; i < 50; i++) {
-            BinderCellViewModel *viewModel = [[BinderCellViewModel alloc] init];
-            viewModel.title = [NSString stringWithFormat:@"%d",i];
-            [dataArray addObject:viewModel];
+            if (transform) {
+                BinderCellClassViewModel *viewModel = [[BinderCellClassViewModel alloc] init];
+                [dataArray addObject:viewModel];
+            }else {
+                BinderCellViewModel *viewModel = [[BinderCellViewModel alloc] init];
+                viewModel.title = [NSString stringWithFormat:@"%d",i];
+                [dataArray addObject:viewModel];
+            }
         }
         [subscriber sendNext:dataArray];
         [subscriber sendCompleted];
