@@ -18,7 +18,7 @@
 
 - Protocol中要有MVVM的绑定机制的方法，如：
 
-  ```obje
+  ```objective-c
   /*
    Cell
    */
