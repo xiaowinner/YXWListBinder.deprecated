@@ -99,6 +99,7 @@
 		AF3994BA203EB66800C714AE /* YXWListBinder */ = {
 			isa = PBXGroup;
 			children = (
+				AFB336432040FA5900D6C730 /* Protocol */,
 				AF2202B72040176700DAAC1F /* YXWListBinder */,
 				AFFC8BF4203FC032009A9500 /* ViewModel */,
 				AFFC8BED203FBC71009A9500 /* View */,
@@ -106,8 +107,6 @@
 				AF3994BC203EB66800C714AE /* AppDelegate.m */,
 				AF3994BE203EB66800C714AE /* ViewController.h */,
 				AF3994BF203EB66800C714AE /* ViewController.m */,
-				AF3994D4203EBD8500C714AE /* YXWCellBinderProtocol.h */,
-				AF3994D7203EBF3500C714AE /* YXWListBinderViewModelProtocol.h */,
 				AF3994C1203EB66800C714AE /* Main.storyboard */,
 				AF3994C4203EB66800C714AE /* Assets.xcassets */,
 				AF3994C6203EB66800C714AE /* LaunchScreen.storyboard */,
@@ -115,6 +114,15 @@
 				AF3994CA203EB66800C714AE /* main.m */,
 			);
 			path = YXWListBinder;
+			sourceTree = "<group>";
+		};
+		AFB336432040FA5900D6C730 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				AF3994D4203EBD8500C714AE /* YXWCellBinderProtocol.h */,
+				AF3994D7203EBF3500C714AE /* YXWListBinderViewModelProtocol.h */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		AFFC8BED203FBC71009A9500 /* View */ = {

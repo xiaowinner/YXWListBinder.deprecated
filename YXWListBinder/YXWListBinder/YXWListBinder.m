@@ -39,7 +39,8 @@
         [nibs enumerateObjectsUsingBlock:^(UINib *obj, NSUInteger idx, BOOL * _Nonnull stop) {
             @strongify(self);
             if (idx < identifiers.count) {
-                [self.tableView registerNib:obj forCellReuseIdentifier:identifiers[idx]];
+                [self.tableView registerNib:obj
+                     forCellReuseIdentifier:identifiers[idx]];
             }
         }];
         
@@ -76,7 +77,8 @@
         [names enumerateObjectsUsingBlock:^(NSString *name, NSUInteger idx, BOOL * _Nonnull stop) {
             @strongify(self);
             if (idx < identifiers.count) {
-                [self.tableView registerClass:NSClassFromString(name) forCellReuseIdentifier:identifiers[idx]];
+                [self.tableView registerClass:NSClassFromString(name) 
+                       forCellReuseIdentifier:identifiers[idx]];
             }
         }];
         
@@ -134,19 +136,20 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     id <YXWListBinderViewModelProtocol> cellViewModel = [self gainCurrentViewModel:indexPath];
-    id <YXWCellBinderProtocol> cell = [tableView
-                                       dequeueReusableCellWithIdentifier:[cellViewModel cellIdentifier]
-                                       forIndexPath:indexPath];
+    id <YXWCellBinderProtocol> cell = [tableView dequeueReusableCellWithIdentifier:[cellViewModel cellIdentifier]
+                                                                      forIndexPath:indexPath];
     [cell bindViewModel:cellViewModel];
     return (UITableViewCell *)cell;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [self gainCurrentCount:IsSection section:0];
+    return [self gainCurrentCount:IsSection
+                          section:0];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self gainCurrentCount:IsRow section:section];
+    return [self gainCurrentCount:IsRow
+                          section:section];
 }
 
 @end

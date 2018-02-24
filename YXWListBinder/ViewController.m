@@ -24,11 +24,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     UINib *cell= [UINib nibWithNibName:@"BinderTableViewCell" bundle:[NSBundle mainBundle]];
-    NSArray *nibs = @[cell];
     self.viewModel = [[MainViewModel alloc] initViewModel];
-    self.tableViewBinder = [[YXWListBinder alloc] initBinder:self.tableView dataCommand:self.viewModel.dataCommand hasSection:NO nibsCell:nibs identifiers:@[@"BinderTableViewCell"]];
+    self.tableViewBinder = [[YXWListBinder alloc] initBinder:self.tableView
+                                                 dataCommand:self.viewModel.dataCommand
+                                                  hasSection:NO
+                                                    nibsCell:@[cell]
+                                                 identifiers:@[@"BinderTableViewCell"]];
     [self.viewModel.dataCommand execute:@1];
-
 }
 
 @end
