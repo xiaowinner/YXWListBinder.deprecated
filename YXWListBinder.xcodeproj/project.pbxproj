@@ -86,6 +86,8 @@
 		AF2202B72040176700DAAC1F /* YXWListBinder */ = {
 			isa = PBXGroup;
 			children = (
+				AF3994D4203EBD8500C714AE /* YXWListBinderWidgetProtocol.h */,
+				AF3994D7203EBF3500C714AE /* YXWListBinderViewModelProtocol.h */,
 				AF3994D1203EB83A00C714AE /* YXWListBinder.h */,
 				AF3994D2203EB83A00C714AE /* YXWListBinder.m */,
 			);
@@ -114,7 +116,6 @@
 			isa = PBXGroup;
 			children = (
 				AF2202B72040176700DAAC1F /* YXWListBinder */,
-				AFB336432040FA5900D6C730 /* Protocol */,
 				AFFC8BF4203FC032009A9500 /* ViewModel */,
 				AFFC8BED203FBC71009A9500 /* View */,
 				AF3994BB203EB66800C714AE /* AppDelegate.h */,
@@ -128,15 +129,6 @@
 				AF3994CA203EB66800C714AE /* main.m */,
 			);
 			path = YXWListBinder;
-			sourceTree = "<group>";
-		};
-		AFB336432040FA5900D6C730 /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-				AF3994D4203EBD8500C714AE /* YXWListBinderWidgetProtocol.h */,
-				AF3994D7203EBF3500C714AE /* YXWListBinderViewModelProtocol.h */,
-			);
-			path = Protocol;
 			sourceTree = "<group>";
 		};
 		AFFC8BED203FBC71009A9500 /* View */ = {
