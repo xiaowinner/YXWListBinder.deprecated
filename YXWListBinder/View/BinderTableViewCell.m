@@ -15,13 +15,10 @@
     [super awakeFromNib];
 }
 
-- (void)bindViewModel:(id)viewModel {
-    
-    if ([viewModel isKindOfClass:[BinderCellViewModel class]]) {
-        BinderCellViewModel *model = viewModel;
-        self.titleLabel.text = model.title;
-    }
-    
+
+- (void)bindViewModel:(id<YXWListBinderViewModelProtocol>)viewModel atIndexPath:(NSIndexPath *)indexPath {
+    BinderCellViewModel *model = viewModel;
+    self.titleLabel.text = model.title;
 }
 
 @end

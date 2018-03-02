@@ -9,14 +9,22 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+/*
+ 用于ViewModel 或Model
+ */
+
 @protocol YXWListBinderViewModelProtocol <NSObject>
 
 @required
 - (NSString *)identifier;
 
 @optional
-- (CGFloat)widgetHeight;
+- (CGFloat)rowHeight;
+- (CGFloat)headerHeight;
+- (CGFloat)footerHeight;
+
 - (NSInteger)gainSubDataCount:(NSInteger)section;
 - (id <YXWListBinderViewModelProtocol>)gainSubData:(NSInteger)index;
 
 @end
+

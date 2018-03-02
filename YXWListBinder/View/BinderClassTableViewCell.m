@@ -34,7 +34,7 @@
     [super setSelected:selected animated:animated];
 }
 
-- (void)bindViewModel:(id)viewModel {
+- (void)bindViewModel:(id<YXWListBinderViewModelProtocol>)viewModel atIndexPath:(NSIndexPath *)indexPath {
     
 }
 

@@ -10,12 +10,8 @@
 
 @implementation BinderTableViewHeader
 
-- (void)bindViewModel:(id)viewModel {
-    
-    NSLog(@"header !!!");
+- (void)bindViewModel:(id<YXWListBinderViewModelProtocol>)viewModel atIndexPath:(NSIndexPath *)indexPath {
     
 }
-
-
 
 @end

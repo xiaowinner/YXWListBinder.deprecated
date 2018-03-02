@@ -43,7 +43,7 @@
 		AF3994CA203EB66800C714AE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AF3994D1203EB83A00C714AE /* YXWListBinder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXWListBinder.h; sourceTree = "<group>"; };
 		AF3994D2203EB83A00C714AE /* YXWListBinder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXWListBinder.m; sourceTree = "<group>"; };
-		AF3994D4203EBD8500C714AE /* YXWListBinderProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXWListBinderProtocol.h; sourceTree = "<group>"; };
+		AF3994D4203EBD8500C714AE /* YXWListBinderWidgetProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXWListBinderWidgetProtocol.h; sourceTree = "<group>"; };
 		AF3994D7203EBF3500C714AE /* YXWListBinderViewModelProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXWListBinderViewModelProtocol.h; sourceTree = "<group>"; };
 		AFB336442041099700D6C730 /* BinderClassTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BinderClassTableViewCell.h; sourceTree = "<group>"; };
 		AFB336452041099700D6C730 /* BinderClassTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BinderClassTableViewCell.m; sourceTree = "<group>"; };
@@ -133,7 +133,7 @@
 		AFB336432040FA5900D6C730 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
-				AF3994D4203EBD8500C714AE /* YXWListBinderProtocol.h */,
+				AF3994D4203EBD8500C714AE /* YXWListBinderWidgetProtocol.h */,
 				AF3994D7203EBF3500C714AE /* YXWListBinderViewModelProtocol.h */,
 			);
 			path = Protocol;

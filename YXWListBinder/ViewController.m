@@ -15,7 +15,6 @@
 @interface ViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (copy, nonatomic) NSArray *data;
 @property (strong, nonatomic) YXWListBinder *tableViewBinder;
 @property (strong, nonatomic) MainViewModel *viewModel;
 
@@ -26,10 +25,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.viewModel = [[MainViewModel alloc] initViewModel];
+    
+    //Class init
     [self initClassBinder];
     [self.viewModel.dataCommand execute:@2];
+    
+//  //Nib init
 //    [self initNibBinder];
 //    [self.viewModel.dataCommand execute:@1];
+    
 }
 
 - (void)initClassBinder {

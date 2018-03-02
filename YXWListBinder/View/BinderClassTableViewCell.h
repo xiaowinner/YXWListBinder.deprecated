@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "YXWListBinderProtocol.h"
+#import "YXWListBinderWidgetProtocol.h"
 
-@interface BinderClassTableViewCell : UITableViewCell<YXWListBinderProtocol>
+@interface BinderClassTableViewCell : UITableViewCell<YXWListBinderWidgetProtocol>
 
 @end

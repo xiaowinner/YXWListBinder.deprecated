@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "YXWListBinderProtocol.h"
+#import "YXWListBinderWidgetProtocol.h"
 
-@interface BinderTableViewHeader : UITableViewHeaderFooterView<YXWListBinderProtocol>
+@interface BinderTableViewHeader : UITableViewHeaderFooterView<YXWListBinderWidgetProtocol>
 
 @end
