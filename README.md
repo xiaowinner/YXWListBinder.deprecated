@@ -28,12 +28,9 @@
    */
   @required
   - (NSString *)identifier;
+  - (CGFloat)widgetHeight;
 
   @optional
-  - (CGFloat)rowHeight;
-  - (CGFloat)headerHeight;
-  - (CGFloat)footerHeight;
-
   - (NSInteger)gainSubDataCount:(NSInteger)section;
   - (id <YXWListBinderViewModelProtocol>)gainSubData:(NSInteger)index;
   ```
