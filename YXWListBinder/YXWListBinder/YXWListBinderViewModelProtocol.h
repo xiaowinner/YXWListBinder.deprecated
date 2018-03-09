@@ -10,19 +10,17 @@
 #import <UIKit/UIKit.h>
 
 /*
- 用于ViewModel 或Model
+ 用于Header ViewModel 或 Model
  */
 
 @protocol YXWListBinderViewModelProtocol <NSObject>
 
 @required
 - (NSString *)identifier;
+- (CGFloat)widgetHeight;
+
 
 @optional
-- (CGFloat)rowHeight;
-- (CGFloat)headerHeight;
-- (CGFloat)footerHeight;
-
 - (NSInteger)gainSubDataCount:(NSInteger)section;
 - (id <YXWListBinderViewModelProtocol>)gainSubData:(NSInteger)index;
 

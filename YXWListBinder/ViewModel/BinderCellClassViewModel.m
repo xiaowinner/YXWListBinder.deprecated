@@ -18,6 +18,10 @@
     return self;
 }
 
+- (CGFloat)widgetHeight {
+    return 50;
+}
+
 - (NSString *)identifier {
     return @"BinderClassTableViewCell";
 }

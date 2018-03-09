@@ -15,12 +15,8 @@
     return @"BinderClassTableViewCell";
 }
 
-- (CGFloat)headerHeight {
+- (CGFloat)widgetHeight {
     return 100;
-}
-
-- (CGFloat)rowHeight {
-    return 50;
 }
 
 - (NSInteger)gainSubDataCount:(NSInteger)section {

@@ -209,15 +209,20 @@
 - (id<YXWListBinderViewModelProtocol>)gainCurrentViewModel:(NSIndexPath *)indexPath
                                                       type:(YXWLineType)type {
     switch (type) {
-        case IsSection:
+            case IsSection:
         {
             return self.data[indexPath.section];
             break;
         }
-        case IsRow:
+            case IsRow:
         {
-            id <YXWListBinderViewModelProtocol> sectionViewModel = self.data[indexPath.section];
-            return [sectionViewModel gainSubData:indexPath.row];
+            if (self.hasSection) {
+                id <YXWListBinderViewModelProtocol> sectionViewModel = self.data[indexPath.section];
+                return [sectionViewModel gainSubData:indexPath.row];
+            }else {
+                id <YXWListBinderViewModelProtocol> rowViewModel = self.data[indexPath.row];
+                return rowViewModel;
+            }
             break;
         }
     }
@@ -228,7 +233,7 @@
         return 0;
     }
     switch (type) {
-        case IsSection:
+            case IsSection:
             if (self.hasSection) {
                 return self.data.count;
             }
@@ -236,7 +241,7 @@
                 return 1;
             }
             break;
-        case IsRow:
+            case IsRow:
             if (self.hasSection) {
                 id <YXWListBinderViewModelProtocol> sectionViewModel = self.data[section];
                 return [sectionViewModel gainSubDataCount:section];
@@ -303,16 +308,15 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if (self.hasSection) {
         id <YXWListBinderViewModelProtocol> headerViewModel = [self gainCurrentViewModel:[NSIndexPath indexPathForRow:0 inSection:section] type:IsSection];
-        return [headerViewModel headerHeight];
+        return headerViewModel.widgetHeight;
     }else {
         return 0.1;
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    id <YXWListBinderViewModelProtocol> headerViewModel = [self gainCurrentViewModel:indexPath type:IsSection];
-    return [headerViewModel rowHeight];
+    id <YXWListBinderViewModelProtocol> viewModel = [self gainCurrentViewModel:indexPath type:IsRow];
+    return viewModel.widgetHeight;
 }
 
 @end
-
