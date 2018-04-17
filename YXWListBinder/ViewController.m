@@ -45,6 +45,12 @@
                                              cellIdentifiers:@[cellName]
                                      headerFooterIdentifiers:@[headerName]
                                                  dataCommand:self.viewModel.dataCommand];
+    
+    [self.tableViewBinder addTableViewDatasSubscribe:^{
+        
+    } errorSubcribe:^(NSError *error) {
+        
+    }];
 }
 
 - (void)initNibBinder {
@@ -55,6 +61,12 @@
                                              cellIdentifiers:@[@"BinderTableViewCell"]
                                      headerFooterIdentifiers:nil
                                                  dataCommand:self.viewModel.dataCommand];
+    
+    [self.tableViewBinder addTableViewDatasSubscribe:^{
+        
+    } errorSubcribe:^(NSError *error) {
+        
+    }];
 }
 
 

@@ -14,7 +14,6 @@
 @property (nonatomic, strong) UICollectionView *collectionView;
 
 @property (nonatomic, assign) BOOL hasSection;
-@property (nonatomic, copy) NSArray *data;
 @property (nonatomic, strong) RACCommand *commend;
 
 @end
@@ -42,18 +41,6 @@
                 [self.collectionView registerNib:obj forCellWithReuseIdentifier:itemIdentifiers[idx]];
             }
         }];
-        
-        [_commend.executionSignals subscribeNext:^(RACSignal *execution) {
-            [[[[execution dematerialize] distinctUntilChanged] deliverOn:[RACScheduler mainThreadScheduler]]
-             subscribeNext:^(NSArray *x) {
-                 @strongify(self);
-                 self.data = x;
-                 [self.collectionView reloadData];
-             } error:^(NSError *error) {
-                 NSLog(@"error");
-             }];
-        }];
-        
     }
     return self;
     
@@ -78,17 +65,6 @@
             if (idx < itemIdentifiers.count) {
                 [self.collectionView registerClass:NSClassFromString(name) forCellWithReuseIdentifier:itemIdentifiers[idx]];
             }
-        }];
-        
-        [_commend.executionSignals subscribeNext:^(RACSignal *execution) {
-            [[[[execution dematerialize] distinctUntilChanged] deliverOn:[RACScheduler mainThreadScheduler]]
-             subscribeNext:^(NSArray *x) {
-                 @strongify(self);
-                 self.data = x;
-                 [self.tableView reloadData];
-             } error:^(NSError *error) {
-                 NSLog(@"error");
-             }];
         }];
     }
     return self;
@@ -117,6 +93,9 @@
         _commend = dataCommand;
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        _tableView.estimatedRowHeight = 0;
+        _tableView.estimatedSectionHeaderHeight = 0;
+        _tableView.estimatedSectionFooterHeight = 0;
         
         @weakify(self);
         [nibHeaderFooters enumerateObjectsUsingBlock:^(UINib *obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -132,17 +111,6 @@
                 [self.tableView registerNib:obj
                      forCellReuseIdentifier:cellIdentifiers[idx]];
             }
-        }];
-        
-        [_commend.executionSignals subscribeNext:^(RACSignal *execution) {
-            [[[[execution dematerialize] distinctUntilChanged] deliverOn:[RACScheduler mainThreadScheduler]]
-             subscribeNext:^(NSArray *x) {
-                 @strongify(self);
-                 self.data = x;
-                 [self.tableView reloadData];
-             } error:^(NSError *error) {
-                 NSLog(@"error");
-             }];
         }];
     }
     return self;
@@ -168,6 +136,9 @@
         _commend = dataCommand;
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        _tableView.estimatedRowHeight = 0;
+        _tableView.estimatedSectionHeaderHeight = 0;
+        _tableView.estimatedSectionFooterHeight = 0;
         
         @weakify(self);
         [headerFooterClassNames enumerateObjectsUsingBlock:^(NSString *name, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -178,7 +149,6 @@
             }
         }];
         
-        
         [cellClassNames enumerateObjectsUsingBlock:^(NSString *name, NSUInteger idx, BOOL * _Nonnull stop) {
             @strongify(self);
             if (idx < cellIdentifiers.count) {
@@ -186,19 +156,68 @@
                        forCellReuseIdentifier:cellIdentifiers[idx]];
             }
         }];
-        
-        [_commend.executionSignals subscribeNext:^(RACSignal *execution) {
-            [[[[execution dematerialize] distinctUntilChanged] deliverOn:[RACScheduler mainThreadScheduler]]
-             subscribeNext:^(NSArray *x) {
-                 @strongify(self);
-                 self.data = x;
-                 [self.tableView reloadData];
-             } error:^(NSError *error) {
-                 NSLog(@"error");
-             }];
-        }];
     }
     return self;
+}
+
+
+#pragma mark Util Method
+- (void)addTableViewDatasSubscribe:(YXWListRefreshSuccessBlock)successBlock errorSubcribe:(YXWListRefreshErrorBlock)errorSubcribe {
+    
+    if (!self.commend) {
+        return;
+    }
+    
+    @weakify(self);
+    [self.commend.executionSignals subscribeNext:^(RACSignal *execution) {
+        [[[execution dematerialize] deliverOnMainThread]
+         subscribeNext:^(NSArray *x) {
+             @strongify(self);
+             self.data = x;
+             if (self.customRefreshBlock) {
+                 self.customRefreshBlock();
+             }else {
+                 [self.tableView reloadData];
+             }
+             if (successBlock) {
+                 successBlock();
+             }
+         } error:^(NSError *error) {
+             if (errorSubcribe) {
+                 errorSubcribe(error);
+             }
+         }];
+    }];
+    
+}
+
+- (void)addCollectionViewDatasSubscribe:(YXWListRefreshSuccessBlock)successBlock errorSubcribe:(YXWListRefreshErrorBlock)errorSubcribe {
+    
+    if (!self.commend) {
+        return;
+    }
+    
+    @weakify(self);
+    [self.commend.executionSignals subscribeNext:^(RACSignal *execution) {
+        [[[[execution dematerialize] distinctUntilChanged] deliverOnMainThread]
+         subscribeNext:^(NSArray *x) {
+             @strongify(self);
+             self.data = x;
+             if (self.customRefreshBlock) {
+                 self.customRefreshBlock();
+             }else {
+                 [self.collectionView reloadData];
+             }
+             if (successBlock) {
+                 successBlock();
+             }
+         } error:^(NSError *error) {
+             if (errorSubcribe) {
+                 errorSubcribe(error);
+             }
+         }];
+    }];
+    
 }
 
 #pragma mark About UICollectionView Method
@@ -209,12 +228,12 @@
 - (id<YXWListBinderViewModelProtocol>)gainCurrentViewModel:(NSIndexPath *)indexPath
                                                       type:(YXWLineType)type {
     switch (type) {
-            case IsSection:
+        case IsSection:
         {
             return self.data[indexPath.section];
             break;
         }
-            case IsRow:
+        case IsRow:
         {
             if (self.hasSection) {
                 id <YXWListBinderViewModelProtocol> sectionViewModel = self.data[indexPath.section];
@@ -233,7 +252,7 @@
         return 0;
     }
     switch (type) {
-            case IsSection:
+        case IsSection:
             if (self.hasSection) {
                 return self.data.count;
             }
@@ -241,7 +260,7 @@
                 return 1;
             }
             break;
-            case IsRow:
+        case IsRow:
             if (self.hasSection) {
                 id <YXWListBinderViewModelProtocol> sectionViewModel = self.data[section];
                 return [sectionViewModel gainSubDataCount:section];
@@ -253,6 +272,13 @@
     }
 }
 
+
+#pragma mark ScrollViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (self.offsetBlock) {
+        self.offsetBlock(scrollView.contentOffset);
+    }
+}
 
 #pragma mark UICollectionViewDelegate & DataSource
 
@@ -305,6 +331,11 @@
                           section:section];
 }
 
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 0.1;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if (self.hasSection) {
         id <YXWListBinderViewModelProtocol> headerViewModel = [self gainCurrentViewModel:[NSIndexPath indexPathForRow:0 inSection:section] type:IsSection];
@@ -317,6 +348,40 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     id <YXWListBinderViewModelProtocol> viewModel = [self gainCurrentViewModel:indexPath type:IsRow];
     return viewModel.widgetHeight;
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (self.tableViewDelegate) {
+        id <YXWListBinderViewModelProtocol> cellViewModel = [self gainCurrentViewModel:indexPath
+                                                                                  type:IsRow];
+        [self.tableViewDelegate YXWTableViewSelected:tableView indexPath:indexPath model:cellViewModel];
+    }
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.collectionViewDelegate) {
+        id <YXWListBinderViewModelProtocol> itemViewModel = self.data[indexPath.row];
+        [self.collectionViewDelegate YXWCollectionViewSelected:collectionView indexPath:indexPath model:itemViewModel];
+    }
+}
+
+#pragma mark Lazy init
+
+- (NSArray *)data {
+    if (!_data) {
+        _data = [NSArray array];
+    }
+    return _data;
+}
+
+- (BOOL)needAnimation {
+    if (!_needAnimation) {
+        _needAnimation = NO;
+    }
+    return _needAnimation;
 }
 
 @end

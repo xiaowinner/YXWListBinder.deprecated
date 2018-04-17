@@ -6,13 +6,56 @@
 //  Copyright © 2018年 xiaowinner. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <ReactiveObjC/ReactiveObjC.h>
+
 #import "YXWListBinderWidgetProtocol.h"
 #import "YXWListBinderViewModelProtocol.h"
 
+
+/*
+ Delegate
+ */
+
+@protocol YXWListBinderTableViewDelegate <NSObject>
+
+- (void)YXWTableViewSelected:(UITableView *)tableView
+                   indexPath:(NSIndexPath*)indexPath
+                       model:(id<YXWListBinderViewModelProtocol>)model;
+
+@end
+
+
+@protocol YXWListBinderCollectionViewDelegate <NSObject>
+
+- (void)YXWCollectionViewSelected:(UICollectionView *)collectionView
+                        indexPath:(NSIndexPath*)indexPath
+                            model:(id<YXWListBinderViewModelProtocol>)model;
+
+@end
+
+
 @interface YXWListBinder : NSObject
+
+/*
+ 获取滑动的偏移量
+ */
+typedef void(^YXWListViewScrollOffsetBlock)(CGPoint offset);
+
+/*
+ 每次请求获得的models，用于外部控制显示细节
+ */
+typedef void(^YXWListRefreshSuccessBlock)(void);
+
+/*
+ 每次请求失败的Blcok
+ */
+typedef void(^YXWListRefreshErrorBlock)(NSError *error);
+
+/*
+ 不使用默认刷新，自定义刷新机制
+ */
+typedef void(^YXWListRefreshCustomBlock)(void);
 
 /*
  当前TableView这一行的类型
@@ -61,5 +104,32 @@ typedef NS_ENUM(NSInteger,YXWLineType) {
             itemClassNames:(NSArray *)itemClassNames
            itemIdentifiers:(NSArray *)itemIdentifiers
                dataCommand:(RACCommand *)dataCommand;
+
+
+/*
+ 添加TableView数据获取机制以及成功和失败的监听
+ */
+- (void)addTableViewDatasSubscribe:(YXWListRefreshSuccessBlock)success errorSubcribe:(YXWListRefreshErrorBlock)errorSubcribe;
+
+/*
+ 添加CollectionView数据获取机制以及成功和失败的监听
+ */
+- (void)addCollectionViewDatasSubscribe:(YXWListRefreshSuccessBlock)successBlock errorSubcribe:(YXWListRefreshErrorBlock)errorSubcribe;
+
+
+/*
+ 滑动值的 Block
+ */
+@property (nonatomic, copy) YXWListViewScrollOffsetBlock offsetBlock;
+
+@property (nonatomic, copy) YXWListRefreshCustomBlock customRefreshBlock;
+
+@property (nonatomic, weak) id<YXWListBinderTableViewDelegate> tableViewDelegate;
+
+@property (nonatomic, weak) id<YXWListBinderCollectionViewDelegate> collectionViewDelegate;
+
+@property (nonatomic, copy) NSArray *data;
+
+@property (nonatomic, assign) BOOL needAnimation;
 
 @end
