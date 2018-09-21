@@ -19,4 +19,3 @@
 - (void)bindViewModel:(id<YXWListBinderViewModelProtocol>)viewModel atIndexPath:(NSIndexPath *)indexPath;
 
 @end
-

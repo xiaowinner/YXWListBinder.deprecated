@@ -6,8 +6,9 @@
 //  Copyright © 2018年 xiaowinner. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 #import <ReactiveObjC/ReactiveObjC.h>
+#import <UIKit/UIKit.h>
 
 #import "YXWListBinderWidgetProtocol.h"
 #import "YXWListBinderViewModelProtocol.h"
@@ -87,6 +88,9 @@ typedef NS_ENUM(NSInteger,YXWLineType) {
    headerFooterIdentifiers:(NSArray *)headerFooterIdentifiers
                dataCommand:(RACCommand *)dataCommand;
 
+
+
+
 #pragma mark UICollectionView
 
 /*
@@ -94,7 +98,9 @@ typedef NS_ENUM(NSInteger,YXWLineType) {
  */
 - (instancetype)initBinder:(UICollectionView *)collectionView
                   nibsItem:(NSArray *)nibsItem
+                nibHeaders:(NSArray *)nibHeaders
            itemIdentifiers:(NSArray *)itemIdentifiers
+         headerIdentifiers:(NSArray *)headerIdentifiers
                dataCommand:(RACCommand *)dataCommand;
 
 /*
@@ -102,7 +108,9 @@ typedef NS_ENUM(NSInteger,YXWLineType) {
  */
 - (instancetype)initBinder:(UICollectionView *)collectionView
             itemClassNames:(NSArray *)itemClassNames
+          headerClassNames:(NSArray *)headerClassNames
            itemIdentifiers:(NSArray *)itemIdentifiers
+         headerIdentifiers:(NSArray *)headerIdentifiers
                dataCommand:(RACCommand *)dataCommand;
 
 
